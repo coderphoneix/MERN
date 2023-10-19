@@ -1,11 +1,14 @@
-import { createRequire } from 'module';
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import postRoutes from './routes/posts.js';
-const path = createRequire('path'); 
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename=fileURLToPath(import.meta.url);
+const __dirname=path.dirname(__filename);
 
 const app = express();
 dotenv.config();
@@ -23,7 +26,6 @@ app.get('*',function(req,res){
     res.sendFile(path.join(__dirname,'../client/build/index.html'));
 });
 
-// const CONNECTION_URL = 'mongodb+srv://Shikhar_3000:6sj2yh2a6x@cluster1.tzyhxif.mongodb.net/?retryWrites=true&w=majority';
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })

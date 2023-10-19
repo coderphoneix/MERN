@@ -20,7 +20,7 @@ app.use(cors());
 
 app.use('/posts',postRoutes);
 
-app.use(express.static(path.join(__dirname,'../client/build')))
+app.use(express.static(path.join(__dirname,'./client/build')))
 
 app.get('*',function(req,res){
     const index=path.join(__dirname,'build','index.html');
